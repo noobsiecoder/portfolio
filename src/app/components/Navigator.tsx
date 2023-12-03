@@ -1,6 +1,8 @@
-"use client";
-
+import { DM_Sans } from "next/font/google";
 import { Close, Hamburger } from "./Icons";
+import { GoToSection } from "./NewLink";
+
+const dmSans = DM_Sans({ weight: "300", subsets: ["latin"] });
 
 type NavigatorProps = {
   showNavInfo: boolean;
@@ -22,12 +24,53 @@ const NavigationButton = ({
   </button>
 );
 
-const NavigatorList = (): JSX.Element => (
-  <ul className="flex flex-col justify-center items-center gap-y-12">
-    <li className="text-lg font-semibold">Home</li>
-    <li className="text-lg font-semibold">Projects</li>
-    <li className="text-lg font-semibold">Experience</li>
-    <li className="text-lg font-semibold">Contact</li>
+const NavigatorList = ({
+  showNavInfo,
+  setShowNavInfo,
+}: NavigatorProps): JSX.Element => (
+  <ul
+    className={`h-screen flex flex-col gap-y-12 lg:gap-y-16 xl:gap-y-20 items-center justify-center ${dmSans.className}`}
+  >
+    <li className="text-xl lg:text-2xl xl:text-3xl font-semibold">
+      <GoToSection
+        link="home"
+        value="Home"
+        showNavInfo={showNavInfo}
+        setShowNavInfo={setShowNavInfo}
+      />
+    </li>
+    <li className="text-xl lg:text-2xl xl:text-3xl font-semibold">
+      <GoToSection
+        link="projects"
+        value="Projects"
+        showNavInfo={showNavInfo}
+        setShowNavInfo={setShowNavInfo}
+      />
+    </li>
+    <li className="text-xl lg:text-2xl xl:text-3xl font-semibold">
+      <GoToSection
+        link="experience"
+        value="Experience"
+        showNavInfo={showNavInfo}
+        setShowNavInfo={setShowNavInfo}
+      />
+    </li>
+    <li className="text-xl lg:text-2xl xl:text-3xl font-semibold">
+      <GoToSection
+        link="education"
+        value="Education"
+        showNavInfo={showNavInfo}
+        setShowNavInfo={setShowNavInfo}
+      />
+    </li>
+    <li className="text-xl lg:text-2xl xl:text-3xl font-semibold">
+      <GoToSection
+        link="contact"
+        value="Contact"
+        showNavInfo={showNavInfo}
+        setShowNavInfo={setShowNavInfo}
+      />
+    </li>
   </ul>
 );
 
@@ -35,21 +78,20 @@ const NavigatorComponent = ({
   showNavInfo,
   setShowNavInfo,
 }: NavigatorProps): JSX.Element => (
-  <div className="">
-    <div
-      className={`bg-white ${
-        showNavInfo ? "p-36" : "hidden"
-      }`}
-    >
-      <NavigatorList />
+  <>
+    <div className={`w-screen bg-white ${showNavInfo ? "" : "hidden"}`}>
+      <NavigatorList
+        showNavInfo={showNavInfo}
+        setShowNavInfo={setShowNavInfo}
+      />
     </div>
-    <div className="fixed bottom-8 left-1/2 -translate-x-1/2">
+    <div className="fixed bottom-8 lg:top-12 xl:top-20 -right-2 lg:right-16 -translate-x-1/2">
       <NavigationButton
         showNavInfo={showNavInfo}
         setShowNavInfo={setShowNavInfo}
       />
     </div>
-  </div>
+  </>
 );
 
 export default NavigatorComponent;

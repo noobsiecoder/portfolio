@@ -1,0 +1,59 @@
+import { DM_Sans, Lora } from "next/font/google";
+import { ReactNode } from "react";
+import { NewLink } from "./NewLink";
+
+const lora = Lora({ weight: ["500", "600"], subsets: ["latin"] });
+const dmSans = DM_Sans({
+  weight: ["200", "300"],
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+});
+
+export const Description = ({ value }: { value: ReactNode }): JSX.Element => (
+  <p
+    className={`text-sm lg:text-base xl:text-lg tracking-tight leading-6 text-justify ${dmSans.className}`}
+  >
+    {value}
+  </p>
+);
+
+export const MiscInfo = ({ value }: { value: string }): JSX.Element => (
+  <h1 className={`text-sm font-extralight ${dmSans.className}`}>{value}</h1>
+);
+
+export const UnorderedLists = ({ lists }: { lists: string[] }): JSX.Element => (
+  <ul className="ml-5 font-medium list-disc text-justify">
+    {lists.map((list) => (
+      <li
+        className={`text-sm font-light lg:text-base xl:text-lg tracking-tight leading-6 text-justify ${dmSans.className}`}
+      >
+        {list}
+      </li>
+    ))}
+  </ul>
+);
+
+export const SubTitle = ({
+  value,
+  path,
+}: {
+  value: string;
+  path: string | null;
+}): JSX.Element => (
+  <h2 id="home" className={`${lora.className}`}>
+    <NewLink
+      link={path ? `https://github.com/noobsiecoder/${path}` : null}
+      value={value}
+      isSubtitle={true}
+    />
+  </h2>
+);
+
+export const Title = ({ value }: { value: string }): JSX.Element => (
+  <h1
+    id="home"
+    className={`text-3xl md:text-4xl lg:text-5xl xl:text-6xl ${lora.className}`}
+  >
+    {value}
+  </h1>
+);
