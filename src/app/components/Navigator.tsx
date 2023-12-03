@@ -38,7 +38,7 @@ const NavigatorList = ({
   >
     <li className="text-xl lg:text-2xl xl:text-3xl font-semibold">
       <GoToSection
-        link="#blog"
+        link="blog"
         value="Blog"
         showNavInfo={showNavInfo}
         setShowNavInfo={setShowNavInfo}
@@ -46,7 +46,7 @@ const NavigatorList = ({
     </li>
     <li className="text-xl lg:text-2xl xl:text-3xl font-semibold">
       <GoToSection
-        link="#projects"
+        link="projects"
         value="Projects"
         showNavInfo={showNavInfo}
         setShowNavInfo={setShowNavInfo}
@@ -54,7 +54,7 @@ const NavigatorList = ({
     </li>
     <li className="text-xl lg:text-2xl xl:text-3xl font-semibold">
       <GoToSection
-        link="#experience"
+        link="experience"
         value="Experience"
         showNavInfo={showNavInfo}
         setShowNavInfo={setShowNavInfo}
@@ -62,7 +62,7 @@ const NavigatorList = ({
     </li>
     <li className="text-xl lg:text-2xl xl:text-3xl font-semibold">
       <GoToSection
-        link="#education"
+        link="education"
         value="Education"
         showNavInfo={showNavInfo}
         setShowNavInfo={setShowNavInfo}
@@ -70,7 +70,7 @@ const NavigatorList = ({
     </li>
     <li className="text-xl lg:text-2xl xl:text-3xl font-semibold">
       <GoToSection
-        link="#contact"
+        link="contact"
         value="Contact"
         showNavInfo={showNavInfo}
         setShowNavInfo={setShowNavInfo}
@@ -78,8 +78,9 @@ const NavigatorList = ({
     </li>
     <li className="text-xl lg:text-2xl xl:text-3xl font-semibold">
       <GoToSection
-        link="resume"
+        link="abhishek_sriram_resume.pdf"
         value="Resume"
+        isResume={true}
         showNavInfo={showNavInfo}
         setShowNavInfo={setShowNavInfo}
       />

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { DM_Sans, Lora } from "next/font/google";
+import { DM_Sans } from "next/font/google";
 import { Href } from "./Icons";
 
 const dmSans = DM_Sans({
@@ -11,6 +11,7 @@ type LinkProps = {
   value: String;
   link: string | null;
   isSubtitle?: boolean;
+  isResume?: boolean;
   showNavInfo?: boolean;
   setShowNavInfo?: (value: boolean) => void;
 };
@@ -29,19 +30,33 @@ export const FollowButton = ({ value, link }: LinkProps) => (
 export const GoToSection = ({
   value,
   link,
+  isResume,
   showNavInfo,
   setShowNavInfo,
-}: LinkProps): JSX.Element => (
-  <Link
-    onClick={() => {
-      document.body.classList.remove("overflow-y-hidden");
-      setShowNavInfo?.(!showNavInfo);
-    }}
-    href={`/${link}`}
-  >
-    {value}
-  </Link>
-);
+}: LinkProps): JSX.Element =>
+  isResume ? (
+    <Link
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={() => {
+        document.body.classList.remove("overflow-y-hidden");
+        setShowNavInfo?.(!showNavInfo);
+      }}
+      href={`/${link}`}
+    >
+      {value}
+    </Link>
+  ) : (
+    <Link
+      onClick={() => {
+        document.body.classList.remove("overflow-y-hidden");
+        setShowNavInfo?.(!showNavInfo);
+      }}
+      href={`#${link}`}
+    >
+      {value}
+    </Link>
+  );
 
 export const NewLink = ({
   value,
@@ -77,7 +92,7 @@ export const NewLink = ({
       target="_blank"
       rel="noopener noreferrer"
       href={link + ""}
-      className="inline-flex gap-x-0.5 items-center underline text-blue-600 hover:text-blue-800 visited:text-purple-600"
+      className={`inline-flex gap-x-0.5 items-center underline font-medium text-blue-600 hover:text-blue-800 visited:text-purple-600 ${dmSans.className}`}
     >
       {value} <Href />
     </Link>

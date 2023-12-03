@@ -26,8 +26,12 @@ const HomeComponent = (): JSX.Element => {
               systems. Curious to know more? Explore my portfolio for a sneak
               peek into my passion for innovation at the sweet spot where
               hardware and code collide. And if you want the nitty-gritty
-              details, check out my <NewLink value="Resume" link="#" />. It's
-              like the backstage pass to my professional journey!
+              details, check out my{" "}
+              <NewLink
+                value="Resume"
+                link="/abhishek_sriram_resume.pdf"
+              />
+              . It's like the backstage pass to my professional journey!
             </Fragment>
           }
         />
