@@ -50,11 +50,12 @@ const EducationComponent = (): JSX.Element => (
   <div id="education" className="grid gap-y-5">
     <div className="flex flex-col gap-y-1 md:gap-y-1.5 lg:gap-y-2 xl:gap-y-3 md:justify-center">
       <Title value="Education" />
-      <Description value="Undergraduate studies in Mechanical Engineering laid the foundation for my technical prowess, fostering a deep understanding of mechanical systems. At graduate school, I am delved into the realm of Robotics, where I am actively honing advanced skills in automation and intelligent systems." />
+      <Description value="My undergrad days were all about plunging into Mechanical Engineering, building up that solid foundation in understanding how things work. Now, in grad school, I've jumped into the world of Robotics. I'm knee-deep in automation and clever systems, sharpening my skills and loving every bit of it!" />
     </div>
     <div className="grid space-y-4">
-      {educationInfo.map((data) => (
+      {educationInfo.map((data, ind) => (
         <EducationDetail
+          key={ind}
           value={data.value}
           school={data.school}
           lists={data.lists}

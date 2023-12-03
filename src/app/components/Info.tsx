@@ -11,20 +11,21 @@ const dmSans = DM_Sans({
 
 export const Description = ({ value }: { value: ReactNode }): JSX.Element => (
   <p
-    className={`text-sm lg:text-base xl:text-lg tracking-tight leading-6 text-justify ${dmSans.className}`}
+    className={`text-sm ml-0.5 lg:text-base xl:text-lg tracking-tight leading-6 text-justify ${dmSans.className}`}
   >
     {value}
   </p>
 );
 
 export const MiscInfo = ({ value }: { value: string }): JSX.Element => (
-  <h1 className={`text-sm font-extralight ${dmSans.className}`}>{value}</h1>
+  <h3 className={`text-sm font-extralight ${dmSans.className}`}>{value}</h3>
 );
 
 export const UnorderedLists = ({ lists }: { lists: string[] }): JSX.Element => (
   <ul className="ml-5 font-medium list-disc text-justify">
-    {lists.map((list) => (
+    {lists.map((list, ind) => (
       <li
+        key={ind}
         className={`text-sm font-light lg:text-base xl:text-lg tracking-tight leading-6 text-justify ${dmSans.className}`}
       >
         {list}
@@ -40,9 +41,9 @@ export const SubTitle = ({
   value: string;
   path: string | null;
 }): JSX.Element => (
-  <h2 id="home" className={`${lora.className}`}>
+  <h2 id="home" className={`text-lg md:text-xl lg:text-2xl xl:text-3xl ${lora.className}`}>
     <NewLink
-      link={path ? `https://github.com/noobsiecoder/${path}` : null}
+      link={path ? path : null}
       value={value}
       isSubtitle={true}
     />

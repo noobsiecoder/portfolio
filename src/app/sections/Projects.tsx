@@ -27,11 +27,11 @@ const projectInfo = [
   },
   {
     value:
-      "Real-Time Appereance Mapping of Indoor Environment using TurtleBot3 Burger",
+      "Real-Time Appearance Mapping of Indoor Environment using TurtleBot3 Burger",
     path: null,
     lists: [
       "Leveraged RTAB-Mapping algorithm for autonomous indoor mapping using TurtleBot3 Burger (LiDAR, camera, and IMU sensors) and also on RTAB-Map mobile app on iPhone 14 Pro.",
-      "Conducted in-depth analysis comparing the developers’ data with our collected data, emphasizing robustness in sensor fusion for accurate mapping and localization.",
+      "Conducted in-depth analysis comparing the developers' data with our collected data, emphasizing robustness in sensor fusion for accurate mapping and localization.",
       "The project underscores hands-on experience in sensor integration and data analysis within robotics.",
     ],
   },
@@ -63,7 +63,10 @@ const ProjectDetail = ({
   lists,
 }: ProjectDetailProps): JSX.Element => (
   <div className="grid gap-y-1">
-    <SubTitle value={value} path={path} />
+    <SubTitle
+      value={value}
+      path={path ? `https://github.com/noobsiecoder/${path}` : null}
+    />
     <UnorderedLists lists={lists} />
   </div>
 );
@@ -75,11 +78,11 @@ const ProjectsComponent = (): JSX.Element => (
       <Description
         value={
           <Fragment>
-            These projects exemplify my diverse skill set, from software
-            development in corporate settings to hands-on research in advanced
-            robotics. Each venture reflects my dedication to innovation and
-            problem-solving in the dynamic intersection of software and
-            robotics. To view more of my work, visit my{" "}
+            Take a look at these projects that really capture the range of my
+            skills - from coding in more relaxed setups to getting hands-on with
+            advanced robotics research. Each one tells a story of my love for
+            breaking new ground in the dynamic world where software and robotics
+            meet. To view more of my work, visit my{" "}
             <NewLink
               value="GitHub Profile"
               link="https://github.com/noobsiecoder"
@@ -89,8 +92,13 @@ const ProjectsComponent = (): JSX.Element => (
       />
     </div>
     <div className="grid space-y-3">
-      {projectInfo.map((data) => (
-        <ProjectDetail value={data.value} path={data.path} lists={data.lists} />
+      {projectInfo.map((data, ind) => (
+        <ProjectDetail
+          key={ind}
+          value={data.value}
+          path={data.path}
+          lists={data.lists}
+        />
       ))}
     </div>
   </div>

@@ -22,7 +22,7 @@ const experienceInfo: ExperienceDetailProps[] = [
     company: "Zoho Corporation (TN, India)",
     lists: [
       "Worked on a proof of concept for translating custom fields into the CRM product. The feature is strategically aimed at cutting down translation costs significantly, leading to potential cost savings for the company.",
-      "Leveraged the translation using Zoho\'s Natural Language Processing API.",
+      "Leveraged the translation using Zoho's Natural Language Processing API.",
       "Achieved a significant average translation accuracy of 92% between the seven most used languages in the Zoho CRM app, ensuring quality and reliability.",
     ],
   },
@@ -75,11 +75,12 @@ const ExperienceComponent = (): JSX.Element => (
   <div id="experience" className="grid gap-y-5">
     <div className="flex flex-col gap-y-1 md:gap-y-1.5 lg:gap-y-2 xl:gap-y-3 md:justify-center">
       <Title value="Experience" />
-      <Description value="I bring a unique perspective that bridges the gap between the physical and digital realms. My journey encompasses hands-on experience in mechanical systems alongside a successful transition into software development, embodying a holistic approach to innovation and problem-solving." />
+      <Description value="I've got this cool perspective that links the real world with the digital one. My journey? Well, I've tinkered with mechanical systems and smoothly shifted into the coding universe. It's all about that mix, you know - blending hands-on experience with software chops. I'm all about looking at problems from every angle and cooking up innovative solutions!" />
     </div>
     <div className="grid space-y-4">
-      {experienceInfo.map((data) => (
+      {experienceInfo.map((data, ind) => (
         <ExperienceDetail
+          key={ind}
           value={data.value}
           start={data.start}
           end={data.end}

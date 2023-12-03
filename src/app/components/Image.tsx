@@ -10,7 +10,7 @@ const ImageComponent = ({ img, alt }: ImageComponentProps): JSX.Element => (
   <div className="relative">
     <Image
       src={img}
-      className="h-72 lg:h-96 xl:h-full object-cover -ml-2 blur rounded-md"
+      className="h-72 md:h-full object-cover -ml-2 blur rounded-md"
       alt={alt}
     />
     <Image
