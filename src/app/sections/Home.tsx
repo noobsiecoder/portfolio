@@ -9,7 +9,7 @@ const dmSans = DM_Sans({ weight: "300", subsets: ["latin"] });
 
 const HomeComponent = (): JSX.Element => {
   return (
-    <div
+    <main
       className="flex flex-col md:flex-row md:gap-x-8 lg:gap-x-12 xl:gap-y-14 md:justify-between"
       id="home"
     >
@@ -19,24 +19,21 @@ const HomeComponent = (): JSX.Element => {
         <Description
           value={
             <Fragment>
-              Hey there! I'm Abhishek, a robotics graduate student at
+              Hey there! I&apos;m Abhishek, a robotics graduate student at
               Northeastern University. I used to geek out as a software dev at
-              Zoho Corp, and now I'm diving into the world of robotics, where I
-              mix engineering and coding to create some seriously cool robotic
-              systems. Curious to know more? Explore my portfolio for a sneak
-              peek into my passion for innovation at the sweet spot where
+              Zoho Corp, and now I&apos;m diving into the world of robotics,
+              where I mix engineering and coding to create some seriously cool
+              robotic systems. Curious to know more? Explore my portfolio for a
+              sneak peek into my passion for innovation at the sweet spot where
               hardware and code collide. And if you want the nitty-gritty
               details, check out my{" "}
-              <NewLink
-                value="Resume"
-                link="/abhishek_sriram_resume.pdf"
-              />
-              . It's like the backstage pass to my professional journey!
+              <NewLink value="Resume" link="/abhishek_sriram_resume.pdf" />.
+              It&apos;s like the backstage pass to my professional journey!
             </Fragment>
           }
         />
       </div>
-    </div>
+    </main>
   );
 };
 
