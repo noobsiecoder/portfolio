@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="relative min-h-screen">
       <body
-        className="p-4 md:mt-10 md:px-12 md:py-8 lg:px-24 xl:px-32 w-screen lg:mt-24 xl:mt-12"
+        className="overflow-x-hidden  p-4 md:mt-10 md:px-12 md:py-8 lg:px-24 xl:px-32 w-screen lg:mt-24 xl:mt-12"
         suppressHydrationWarning={true}
       >
         {children}

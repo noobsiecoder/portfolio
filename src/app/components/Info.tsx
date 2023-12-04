@@ -53,7 +53,7 @@ export const SubTitle = ({
 export const Title = ({ value }: { value: string }): JSX.Element => (
   <h1
     id="home"
-    className={`text-3xl md:text-4xl lg:text-5xl xl:text-6xl ${lora.className}`}
+    className={`text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl ${lora.className}`}
   >
     {value}
   </h1>

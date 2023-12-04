@@ -22,11 +22,7 @@ const Home = () => {
         setShowNavInfo={setShowNavInfo}
       />
       <div
-        className={`${
-          showNavInfo
-            ? "invisible"
-            : "grid gap-y-10 lg:gap-y-24"
-        }`}
+        className={`${showNavInfo ? "invisible" : "grid gap-y-10 lg:gap-y-24"}`}
       >
         <HomeComponent />
         <div className="grid space-y-10">
