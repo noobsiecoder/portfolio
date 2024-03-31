@@ -28,7 +28,7 @@ const EducationSection = async () => {
             key={index}
             className="flex justify-between gap-y-4 md:grid-flow-col md:gap-x-6"
           >
-            <div className="md:order-1 invisible h-0">
+            <div className="md:order-1 hidden md:invisible h-0">
               <Picture src={IMG} alt={""} caption={""} />
             </div>
             <div className="flex flex-col gap-y-0.5 w-full">
