@@ -1,0 +1,28 @@
+{
+  "experiences": [
+    {
+      "title": "Member of Technical Staff",
+      "company": "Zoho Corporation",
+      "location": "TN, India",
+      "timeline": "Jun 2023 - Aug 2023",
+      "responsibilities": [
+        "Worked on a proof of concept to translate custom fields into the CRM product, which is strategically aimed at <b>cutting down translation costs significantly by 5%, leading to potential cost savings for the users</b>",
+        "Implemented the proof of concept using standard software principles achieving a significant <b>accuracy of 92% and minimized network calls by 60ms</b>"
+      ],
+      "image": {
+        "src": "/images/zoho_estancia.jpeg",
+        "alt": "Estancia IT Park",
+        "caption": "Estancia IT Park, Source: Linkedin"
+      }
+    },
+    {
+      "title": "Project Trainee",
+      "company": "Zoho Corporation",
+      "location": "TN, India",
+      "timeline": "Jan 2023 - May 2023",
+      "responsibilities": [
+        "Learned Java EE Technologies and developed a full-stack application using Spring MVC and PostgreSQL"
+      ]
+    }
+  ]
+}
