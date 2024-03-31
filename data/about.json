@@ -2,7 +2,7 @@
   "title": "Welcome to my Robotics Portfolio!",
   "description": "Hello, I'm Abhishek, a first-year robotics graduate student attending Northeastern University. I have a bachelors degree in Mechanical Engineering. But, I always fancied software development. My curiosity led me to learn new tech and allowed me to collaborate with a lot of experienced developers in the industry. Currently, I am learning computer vision and supervised machine learning. My current research is on <b><u>improvising Lane detection using Hough transform</u></b>.",
   "image": {
-    "src": "/images/abhi.JPG",
+    "src": "/images/abhi.jpg",
     "alt": "Me, Myself and I ;)",
     "caption": "Diana's bath, NH"
   }
