@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     {
       rel: "icon",
       type: "image/png",
-      sizes: "32x32",
+      sizes: "16x16",
       url: "/icons/favicon.ico",
     },
   ],
@@ -21,7 +21,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="relative min-h-screen p-4 md:p-12 lg:p-24 xl:px-48 2xl:px-64">{children}</body>
+      <body className="relative min-h-screen p-4 md:p-12 lg:p-24 xl:px-48 2xl:px-64">
+        {children}
+      </body>
     </html>
   );
 }
