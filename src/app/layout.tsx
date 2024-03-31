@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="relative min-h-screen p-4 md:p-12 lg:p-24 xl:px-48 2xl:px-96">{children}</body>
+      <body className="relative min-h-screen p-4 md:p-12 lg:p-24 xl:px-48 2xl:px-64">{children}</body>
     </html>
   );
 }
