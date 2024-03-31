@@ -14,8 +14,6 @@ const BlogSection = async () => {
     const blog = { name: item.title, link: item.link };
     blogItems.push(blog);
   });
-  console.log(blogItems);
-  //   blogItems.map((values, items) => console.log(values));
 
   return (
     <div className="grid gap-y-1">
