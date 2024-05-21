@@ -25,7 +25,7 @@ const IntroSection = () => (
 
 const Page = () => {
   return (
-    <main className="min-h-screen relative px-6 py-12 md:px-24 lg:px-48 xl:px-72 xl:py-16 2xl:px-[32rem] 2xl:py-20">
+    <main className="min-h-screen relative px-6 py-12 md:px-24 lg:px-48 xl:px-72 xl:py-16 2xl:px-96">
       <DesktopNavbar />
       <IntroSection />
       <MobileNavbar />
