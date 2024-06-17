@@ -57,7 +57,7 @@ export async function setMessageDocData(
   collectionName: string,
   data: MessageDocType
 ) {
-  noStore();
+  noStore(); // dynamic rendering - no cache (opt out of static rendering)
   data.timestamp = Timestamp.fromDate(new Date());
   try {
     await addDoc(collection(db, collectionName), data);
