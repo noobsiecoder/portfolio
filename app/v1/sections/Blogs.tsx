@@ -1,7 +1,7 @@
 import { Timestamp } from "firebase/firestore";
 import { Url } from "next/dist/shared/lib/router/router";
 import Link from "next/link";
-import { Database } from "@/data/init";
+import { getOrderedData } from "@/data/init";
 
 interface BlogDataProps {
   title: string;
@@ -83,8 +83,7 @@ const ViewOnMediumLink = () => {
 };
 
 const Blogs = async () => {
-  const db = new Database();
-  const blogsInfo = await db.getOrderedData("blogs", "timestamp", "desc");
+  const blogsInfo = await getOrderedData("blogs", "timestamp", "desc");
 
   return (
     <div className="flex flex-col gap-y-2">

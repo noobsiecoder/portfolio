@@ -35,37 +35,31 @@ interface MessageDocType {
   timestamp?: Timestamp;
 }
 
-export class Database {
-  app: FirebaseApp;
-  db: Firestore;
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-  constructor() {
-    // Initialize Firebase
-    this.app = initializeApp(firebaseConfig);
-    this.db = getFirestore(this.app);
-  }
+export async function getOrderedData(
+  collectionName: string,
+  fieldName: string,
+  orderDirection: OrderByDirection
+) {
+  const col = collection(db, collectionName);
+  const orderedCol = query(col, orderBy(fieldName, orderDirection));
+  const orderedSnapshot = await getDocs(orderedCol);
+  const orderedList = orderedSnapshot.docs.map((doc) => doc.data());
 
-  async getOrderedData(
-    collectionName: string,
-    fieldName: string,
-    orderDirection: OrderByDirection
-  ) {
-    "use server";
-    const col = collection(this.db, collectionName);
-    const orderedCol = query(col, orderBy(fieldName, orderDirection));
-    const orderedSnapshot = await getDocs(orderedCol);
-    const orderedList = orderedSnapshot.docs.map((doc) => doc.data());
+  return orderedList;
+}
 
-    return orderedList;
-  }
-
-  async setMessageDocData(collectionName: string, data: MessageDocType) {
-    "use server";
-    data.timestamp = Timestamp.fromDate(new Date());
-    try {
-      await addDoc(collection(this.db, collectionName), data);
-    } catch (err) {
-      console.error(err);
-    }
+export async function setMessageDocData(
+  collectionName: string,
+  data: MessageDocType
+) {
+  data.timestamp = Timestamp.fromDate(new Date());
+  try {
+    await addDoc(collection(db, collectionName), data);
+  } catch (err) {
+    console.error(err);
   }
 }

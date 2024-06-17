@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Database } from "@/data/init";
+import { getOrderedData } from "@/data/init";
 import Project from "@/components/v1/Project";
 
 interface ProjectsProps {
@@ -34,8 +34,7 @@ const MoreProjectsLink = () => {
 };
 
 const Projects = async ({ showLink }: ProjectsProps) => {
-  const db = new Database();
-  const projectsInfo = await db.getOrderedData("projects", "timestamp", "desc");
+  const projectsInfo = await getOrderedData("projects", "timestamp", "desc");
 
   return (
     <div className="flex flex-col gap-y-2">

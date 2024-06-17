@@ -1,5 +1,5 @@
 "use client";
-import { Database } from "@/data/init";
+import { setMessageDocData } from "@/data/init";
 import {
   Dispatch,
   FormEvent,
@@ -97,8 +97,7 @@ const Contact = () => {
       message,
     };
 
-    const db = new Database();
-    db.setMessageDocData(collectionName, data);
+    setMessageDocData(collectionName, data);
     clearInputFields();
     alert(
       "Your message has been sent successfully! Abhishek will get in touch with you shortly."
