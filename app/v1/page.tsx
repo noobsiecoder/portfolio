@@ -1,35 +1,22 @@
-import Image from "next/image";
-import { DesktopNavbar, MobileNavbar } from "@components/v1/Navbar";
-import intro from "@data/intro";
-
-const IntroSection = () => (
-  <div className="pt-16 lg:pt-20 xl:pt-24 2xl:pt-28">
-    <div className="grid justify-center gap-y-4 w-full">
-      <div className="flex justify-center items-center">
-        <Image
-          src={intro.image}
-          alt={intro.alt}
-          className="rounded-full w-72 h-72 object-fill"
-        />
-      </div>
-      <div className="grid gap-y-2">
-        <div className="">
-          <h1 className="text-center font-semibold text-3xl lg:text-4xl 2xl:text-5xl">{intro.title}</h1>
-          <h3 className="text-center font-medium text-sm lg:text-base 2xl:text-xl">{intro.caption}</h3>
-        </div>
-        <p className="text-justify font-light text-sm lg:text-base">{intro.description}</p>
-      </div>
-    </div>
-  </div>
-);
+import About from "@/sections/v1/About";
+import SidePanel from "@/sections/v1/SidePanel";
+import Projects from "@/sections/v1/Projects";
+import Blogs from "@/sections/v1/Blogs";
+import Contact from "@/sections/v1/Contact";
 
 const Page = () => {
   return (
-    <main className="min-h-screen relative px-6 py-12 md:px-24 lg:px-48 xl:px-72 xl:py-16 2xl:px-96">
-      <DesktopNavbar />
-      <IntroSection />
-      <MobileNavbar />
-    </main>
+    <>
+      <aside className="relative bg-gradient-to-r from-blue-600 to-blue-950 px-8 py-12 lg:w-4/12 lg:py-16 xl:py-20">
+        <SidePanel />
+      </aside>
+      <main className="p-8 bg-stone-50 flex flex-col gap-y-4 lg:gap-y-6 xl:gap-y-8 lg:w-8/12 lg:py-16 lg:px-24 xl:py-20 xl:px-32">
+        <About />
+        <Projects showLink={true} />
+        <Blogs />
+        <Contact />
+      </main>
+    </>
   );
 };
 

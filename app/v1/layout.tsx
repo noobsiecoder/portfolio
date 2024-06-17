@@ -1,13 +1,33 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import type { Viewport } from "next";
+import NextTopLoader from "nextjs-toploader";
 import "../globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
-
 export const metadata: Metadata = {
+  icons: {
+    icon: [
+      {
+        url: "/icons/favicon-32x32.png",
+        type: "image/png",
+        sizes: "32x32",
+      },
+      {
+        url: "/icons/favicon-16x16.png",
+        type: "image/png",
+        sizes: "16x16",
+      },
+    ],
+    apple: [
+      {
+        url: "/icons/apple-touch-icon.png",
+        type: "image/png",
+        sizes: "180x180",
+      },
+    ],
+  },
+  manifest: "/icons/site.webmanifest",
   title: "Abhishek's Portfolio",
-  description: "Website displays abhishek's work and interest",
+  description: "Features Abhishek's notable work",
 };
 
 export const viewport: Viewport = {
@@ -15,6 +35,7 @@ export const viewport: Viewport = {
   initialScale: 1.0,
   maximumScale: 1,
   userScalable: false,
+  themeColor: "##fafaf9",
 };
 
 export default function RootLayout({
@@ -23,8 +44,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className="scroll-smooth">
+      <body>
+        <NextTopLoader />
+        <div className="min-h-screen flex flex-col lg:flex-row">{children}</div>
+      </body>
     </html>
   );
 }
