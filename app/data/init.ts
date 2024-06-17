@@ -1,12 +1,12 @@
 // Import the functions you need from the SDKs you need
-import { FirebaseApp, initializeApp } from "firebase/app";
+import { unstable_noStore as noStore } from "next/cache";
+import { initializeApp } from "firebase/app";
 import {
   getFirestore,
   collection,
   getDocs,
   query,
   orderBy,
-  Firestore,
   OrderByDirection,
   addDoc,
   Timestamp,
@@ -44,6 +44,7 @@ export async function getOrderedData(
   fieldName: string,
   orderDirection: OrderByDirection
 ) {
+  noStore();
   const col = collection(db, collectionName);
   const orderedCol = query(col, orderBy(fieldName, orderDirection));
   const orderedSnapshot = await getDocs(orderedCol);
@@ -56,6 +57,7 @@ export async function setMessageDocData(
   collectionName: string,
   data: MessageDocType
 ) {
+  noStore();
   data.timestamp = Timestamp.fromDate(new Date());
   try {
     await addDoc(collection(db, collectionName), data);
