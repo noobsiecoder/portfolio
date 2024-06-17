@@ -50,6 +50,7 @@ export class Database {
     fieldName: string,
     orderDirection: OrderByDirection
   ) {
+    "use server";
     const col = collection(this.db, collectionName);
     const orderedCol = query(col, orderBy(fieldName, orderDirection));
     const orderedSnapshot = await getDocs(orderedCol);
@@ -59,6 +60,7 @@ export class Database {
   }
 
   async setMessageDocData(collectionName: string, data: MessageDocType) {
+    "use server";
     data.timestamp = Timestamp.fromDate(new Date());
     try {
       await addDoc(collection(this.db, collectionName), data);
