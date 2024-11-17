@@ -1,0 +1,153 @@
+---
+slug: "sobel-filter"
+title: "Seeing the World in Edges: An Insider’s Look at Sobel Detection"
+emoji: "🖼️"
+date: 2024-02-15T05:02:14.000Z
+desc: "Implementing Sobel filter from scratch and comparing results"
+topic: "Computer Vision"
+lang: "en"
+draft: false
+---
+
+import BlogImage from "@astro/BlogImage.astro";
+
+<BlogImage
+  src="https://miro.medium.com/v2/resize:fit:548/format:webp/1*mVRwJFTW0faTzYQXF_yHgQ.jpeg"
+  alt="RGB pixels"
+  caption="A representation of RGB channel as a 3x3 matrix"
+  client:load
+/>
+
+As humans, when we see an image, we observe shapes and edges. We use this data to interpret an object. Ever since automation bloomed, we have been automating a plethora of work. Object detection and recognition require edge detection. A computer cannot interpret an image like a human would. Instead, we work with the image pixels. So, how are these pixels represented in a computer? A two-dimensional array with an additional column to represent the color channels of the image.
+
+Now, let’s dive into the **Sobel Edge Detection** implementation. It is a **gradient-based edge detection algorithm** that computes the gradient magnitude of an image, which highlights edges where the intensity changes rapidly. The Sobel operator applies two **3x3 convolution kernels** to the image, one for detecting horizontal and vertical changes. For more info, check [Wikipedia](https://en.wikipedia.org/wiki/Sobel_operator). The algorithm behind the technique is shown below:
+
+1. Convert the color image to grayscale by taking its mean from the values of the RGB channel in the image (assuming it is a color image)
+2. Apply a 3x3 convolution filter horizontally and vertically to the grayscale intensity values
+3. Calculate the gradient magnitude:
+
+ $$ 
+ mg = \sqrt{((hrz^{2}) + (vrt^{2}))}
+ $$
+
+4. Choose an appropriate value for thresholding, higher the value, lowers the chances of finding an edge (dull)
+
+## Load Image file into an array
+
+```py
+import sys
+import numpy as np
+from PIL import Image
+from os.path import exists
+
+class SobelOperator:
+    def __init__(self, img_fs: str):
+        '''
+        Load image file and create a numpy array
+        The image data is then loaded into the numpy array
+        '''
+        self.__img_fs = img_fs
+        file_exists = exists(img_fs)  # check if filepath exists
+        if (file_exists):
+            img = Image.open(img_fs)  # load image using Pillow
+            self.__img_np = np.array(img)  # load image into a numpy array
+        else:
+            print("Error: '{}' File does not exist".format(img_fs))
+            sys.exit(-1)
+```
+
+We have created a class named `SobelOperator`. The image file path is taken as an argument in the `__init__(self, …)`. Then, we load the image file as a numpy array.
+
+## Converting into a Grayscale Image
+
+```py
+import numpy as np
+
+class SobelOperator:
+    def grayscale(self):
+        '''
+        Convert image (RGB) color to grayscale
+        Assuming that the original image has 3 channels: Red, Green and Blue
+        Take average of the RGB channel. The numpy has a shape of 3, the third one has 3 channels: colors
+        These 3 channels can be used from the 2nd axis in the numpy array
+        '''
+        self.__grayscale_np = np.mean(
+            self.__img_np, axis=2, dtype=np.uint8)  # covert into grayscale using mean
+        return self
+```
+
+By taking the mean between the color channels (assuming an RGB color channel), we can convert the image to grayscale. However, the values from the mean would range between 0–255. When converting to grayscale, we talk about the intensity rather than the three channels. Hence, the intensity corresponds to how dark(≤255) or light(≥0) is in the image.
+
+## Convolution Filter and calculating Gradient Magnitude
+
+```py
+import numpy as np
+from scipy.signal import convolve2d
+
+class SobelOperator:
+    def gradient_approximation(self):
+        '''
+        Apply two convolution filter to the grayscale image and approximate the magnitude of the gradient
+        Horizontal filter (Hf) := [[-1, 0, 1], [-2, 0, 2], [-1, 0, 1]]
+        Vertical filter (Vf) := transpose(Hf)
+        '''
+        horizontal_filter = np.array([[-1, 0, 1],
+                                      [-2, 0, 2],
+                                      [-1, 0, 1]])
+        vertical_filter = np.transpose(horizontal_filter)
+        horizontal_gradient = convolve2d(
+            self.__grayscale_np, horizontal_filter, mode='same', boundary='symm', fillvalue=0)
+        vertical_gradient = convolve2d(
+            self.__grayscale_np, vertical_filter, mode='same', boundary='symm', fillvalue=0)
+        self.__gradient_magnitude = np.sqrt(
+            horizontal_gradient ** 2 + vertical_gradient ** 2)  # magnitude of the gradient
+        return self
+```
+
+A convolution filter is a 3x3 kernel used to calculate an approximation of the derivatives — one for the horizontal array and one for the vertical. The 3x3 Convolution filter can be expressed as:
+
+$$
+g_{x} = \begin{bmatrix}
+    -1 & 0 & 1 \\
+    -2 & 0 & 2 \\
+    -1 & 0 & 1
+\end{bmatrix}
+
+g_{y} = \begin{bmatrix}
+    -1 & -2 & -1 \\
+    0 & 0 & 0 \\
+    1 & 2 & 1
+\end{bmatrix}
+$$
+
+This method is quicker to compute, and we get an output instantly. To calculate the gradient magnitude, we take the square root of the sum of the squares of the partial derivatives in the x and y directions.
+
+## Apply Threshold
+
+```py
+import numpy as np
+
+class SobelOperator:
+    def thresholding(self, threshold: int = 100):
+    '''
+    A final procedure follows applying a threshold
+    Pixels with gradient magnitude above the threshold are considered part of an edge, while those below are not
+    '''
+    self.__binary_edge_np = (self.**gradient_magnitude > threshold).astype(np.uint8) * 255
+    return self
+```
+
+Pixels with gradient magnitudes exceeding the threshold are deemed to belong to an edge, whereas those below it are disregarded. Hence, a suitable threshold value must be chosen.
+
+## Final Thoughts
+
+<BlogImage
+  src="https://github.com/noobsiecoder/edge-detection-filters/blob/main/results/sobel/1/Figure_2.png?raw=true"
+  alt="Comparison b/w opencv's and scratch function images" 
+  caption="A comparison between Sobel filters implemented from scratch (left) and using OpenCv2 (right)"
+  client:load
+/>
+
+The above figure depicts two contrasting images between one image. The one on the right(used Cv2.Sobel) detected the edges more accurately than the one on the left side. The image on the right is generated using Opencv’s Sobel operator. In this method, the noise in the picture is removed/smoothed, and then edge detection is implemented. The threshold value also plays a vital role in the edge detection. Lower threshold values gave satisfactory results for some images, but some failed.
+
+To view the full code, check out the [here](https://github.com/noobsiecoder/edge-detection-filters/blob/main/src/sobel.py).

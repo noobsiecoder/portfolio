@@ -1,0 +1,45 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import DefaultLayout from "@layouts/DefaultLayout.astro";
+import PostsCard from "@astro/PostsCard.astro";
+import ThemeBtn from "@react/ThemeBtn.tsx";
+
+interface Props {
+  count?: number;
+}
+
+// Type for the `blog` collection entry
+type BlogEntry = CollectionEntry<"blog">;
+
+// Only return posts with `draft: false` in the frontmatter
+const blogPosts: Array<BlogEntry> = await getCollection(
+  "blog",
+  ({ data }: any) => {
+    return data.draft === false;
+  }
+);
+
+const sortedBlogPosts = blogPosts.sort(
+  (a, b) =>
+    new Date(b.data.date).getTime() -
+    new Date(a.data.date).getTime()
+);
+
+const { count } = Astro.props;
+---
+
+{
+  count === undefined ? (
+    <DefaultLayout
+      title="Abhishek's Posts"
+      description="Read about my works, my thoughts and get to know me more!"
+    >
+      <PostsCard posts={sortedBlogPosts} />
+      <div class="sticky mt-8 float-right text-white">
+        <ThemeBtn client:load />
+      </div>
+    </DefaultLayout>
+  ) : (
+    <PostsCard posts={sortedBlogPosts.slice(0, count)} />
+  )
+}

@@ -1,0 +1,22 @@
+---
+interface Props {
+  src: string | null | undefined;
+  alt: string | null | undefined;
+  caption: string;
+  invertColor?: boolean;
+}
+
+const { src, alt, caption, invertColor } = Astro.props;
+---
+
+<figure class="flex flex-col items-center justify-center gap-y-2">
+  <img
+    class=`rounded-md ${invertColor ? "dark:invert" : ""}`
+    src={src}
+    alt={alt}
+  />
+  <figcapture
+    class="m-0 font-light text-sm dark:text-stone-200"
+    set:html={caption}
+  />
+</figure>

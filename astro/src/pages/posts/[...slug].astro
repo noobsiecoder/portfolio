@@ -1,0 +1,67 @@
+---
+import { readingTime } from "reading-time-estimator";
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
+import DefaultLayout from "@layouts/DefaultLayout.astro";
+import ThemeBtn from "@react/ThemeBtn.tsx";
+import ArticleInfo from "@astro/ArticleInfo.astro";
+
+// Type for the `blog` collection entry
+type BlogEntry = CollectionEntry<"blog">;
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((post: BlogEntry) => {
+    const { slug } = post;
+
+    return {
+      params: { slug },
+      props: {
+        ...post,
+        words: post.body,
+      },
+    };
+  });
+}
+
+type Props = CollectionEntry<"blog">;
+
+const post: Props = Astro.props;
+const { Content } = await post.render();
+
+const {
+  data: { lang, title, emoji, date, desc, topic },
+} = post;
+---
+
+<DefaultLayout title={title} description={desc}>
+  <div class="grid space-y-3 mb-8">
+    <div>
+      <div class="flex items-center justify-center text-center">
+        <h1
+          class={`${lang === "ta" ? "font-noto-sans-tamil" : "font-poppins"} text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-semibold tracking-tight text-stone-900 dark:text-stone-100`}
+        >
+          {emoji + title}
+        </h1>
+      </div>
+      <ArticleInfo
+        date={new Date(date).toDateString()}
+        TimeTakenToRead={readingTime(post.words).text}
+        topic={topic}
+      />
+    </div>
+    <p
+      class="font-light italic font-poppins text-justify tracking-tighter text-stone-800 dark:text-stone-300"
+    >
+      {desc}
+    </p>
+  </div>
+  <div
+    class="prose tracking-tight dark:prose-invert lg:prose-xl font-poppins prose-p:text-justify prose-figure:p-0 prose-stone max-w-none"
+  >
+    <Content />
+  </div>
+  <div class="sticky bottom-8 float-right">
+    <ThemeBtn client:load />
+  </div>
+</DefaultLayout>

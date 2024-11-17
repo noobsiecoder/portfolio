@@ -1,0 +1,38 @@
+---
+import DefaultLayout from "@layouts/DefaultLayout.astro";
+import ThemeBtn from "@react/ThemeBtn.tsx";
+import BlogImage from "../components/astro/BlogImage.astro";
+
+const ERROR = "Page Not Found";
+const MESSAGE = "This link is invalid, try navigating back to my";
+---
+
+<DefaultLayout title="Invalid Path" description="Err, you're in the wrong path">
+  <div class="flex flex-col space-y-12">
+    <div class="flex justify-between">
+      <div class="flex flex-col gap-y-1">
+        <div class="grid gap-y-3">
+          <h1
+            class="text-2xl lg:text-3xl font-bold font-poppins tracking-tight text-stone-900 dark:text-stone-100"
+          >
+            {ERROR}
+          </h1>
+          <p
+            class="text-xs xl:text-sm font-light font-poppins tracking-tight text-stone-800 dark:text-stone-200"
+          >
+            {MESSAGE}
+            <a class="underline flex items-center gap-x-1" href="/">homepage</a>
+          </p>
+        </div>
+      </div>
+      <ThemeBtn client:load />
+    </div>
+    <div>
+      <BlogImage
+        src="https://firebasestorage.googleapis.com/v0/b/portfolio-data-f5676.appspot.com/o/img%2Fmisc%2Fberkay-gumustekin-ngqyo2AYYnE-unsplash.jpg?alt=media&token=feb5b856-2b96-4f13-bee5-98cc182e0f63"
+        alt="puppy image"
+        caption="Here's a cute puppy! Credits: <a class='underline font-semibold cursor-pointer' target='_blank' href='https://unsplash.com/photos/selective-focus-photography-of-short-coated-brown-puppy-facing-right-side-ngqyo2AYYnE'>Unsplash</a>"
+      />
+    </div>
+  </div>
+</DefaultLayout>
