@@ -1,0 +1,19 @@
+{
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/v2",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/v1/:path*",
+      "destination": "/nextjs/:path*"
+    },
+    {
+      "source": "/v2/:path*",
+      "destination": "/astro/:path*"
+    }
+  ]
+}
